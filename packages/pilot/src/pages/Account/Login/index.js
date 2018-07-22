@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 
 import LoginForm from '../../../containers/Account/LoginForm'
 
-import { requestLogin } from '../actions'
+import { requestLogin, resetState } from '../actions'
 
 import buildParamErrors from './buildParamErrors'
 
