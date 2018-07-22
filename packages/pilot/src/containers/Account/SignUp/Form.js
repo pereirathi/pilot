@@ -77,6 +77,7 @@ const SignUpForm = ({
 
 SignUpForm.defaultProps = {
   errors: null,
+  loading: false,
 }
 
 SignUpForm.propTypes = {
