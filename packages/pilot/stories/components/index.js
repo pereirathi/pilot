@@ -28,6 +28,7 @@ import BalanceSummary from './BalanceSummary'
 import SidebarSections from './SidebarSections'
 import SidebarSummary from './SidebarSummary'
 import Loader from './Loader'
+import LocalLoader from './LocalLoader'
 import Message from './Message'
 
 storiesOf('Components', module)
@@ -58,4 +59,5 @@ storiesOf('Components', module)
   .add('Summary', () => <Summary />)
   .add('Transfer Error', () => <TransferError />)
   .add('Loader', () => <Loader />)
+  .add('Local loader', () => <LocalLoader />)
   .add('Message', () => <Message />)
