@@ -7,7 +7,8 @@ import { translate } from 'react-i18next'
 import { compose } from 'ramda'
 import { connect } from 'react-redux'
 
-import Login from '../../../containers/Account/Login'
+import LoginForm from '../../../containers/Account/LoginForm'
+
 import { requestLogin } from '../actions'
 
 import buildParamErrors from './buildParamErrors'
@@ -45,6 +46,8 @@ const enhanced = compose(
   withRouter
 )
 
+const renderProps = props => <LoginForm {...props} />
+
 class LoginPage extends PureComponent {
   // eslint-disable-next-line class-methods-use-this
   handlePasswordRecovery (e) {
@@ -53,23 +56,19 @@ class LoginPage extends PureComponent {
   }
 
   render () {
-    return (
-      <Login
-        t={this.props.t}
-        errors={buildParamErrors(this.props.error)}
-        loading={this.props.loading}
-        onLogin={this.props.onLogin}
-        onPasswordRecovery={this.handlePasswordRecovery}
-      />
-    )
+    return renderProps({
+      ...this.props,
+      errors: buildParamErrors(this.props.error),
+      onPasswordRecovery: this.handlePasswordRecovery,
+    })
   }
 }
 
 LoginPage.propTypes = {
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
   error: PropTypes.instanceOf(Error),
-  loading: PropTypes.bool,
-  onLogin: PropTypes.func.isRequired,
+  loading: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
+  onLogin: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
 }
 
 LoginPage.defaultProps = {

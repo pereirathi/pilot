@@ -85,7 +85,12 @@ class Root extends Component {
     }
 
     if (!client) {
-      return <Route path="/account" component={Account} />
+      return (
+        <Route
+          path="/account"
+          component={Account}
+          environment={environment}
+        />)
     }
 
     if (user && startsWith('/account/login', path)) {

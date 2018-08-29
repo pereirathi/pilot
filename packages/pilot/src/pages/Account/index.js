@@ -9,10 +9,7 @@ import {
 
 import {
   compose,
-  always,
-  anyPass,
   contains,
-  ifElse,
 } from 'ramda'
 
 import { translate } from 'react-i18next'
@@ -29,25 +26,26 @@ import RegisteredPresentation from './RegisteredPresentation'
 
 import Logo from '../logo.svg'
 
-const getBaseByPath = ifElse(
-  anyPass([
-    contains('account/login'),
-    contains('account/password'),
-  ]),
-  always('dark'),
-  always('light')
-)
+const DARK_BASE = 'dark'
+const LIGHT_BASE = 'light'
+
+const getBaseByPath = (pathname, environment) => {
+  if (contains('account/login', pathname) && environment === 'live') {
+    return LIGHT_BASE
+  }
+  return DARK_BASE
+}
 
 const enhance = compose(
   withRouter,
   translate()
 )
 
-const AccountArea = ({ t, history: { location } }) => (
+const AccountArea = ({ t, environment, history: { location } }) => (
   <Account
     t={t}
     logo={Logo}
-    base={getBaseByPath(location.pathname)}
+    base={getBaseByPath(location.pathname, environment)}
     primaryContent={
       <Switch>
         <Route
@@ -98,6 +96,7 @@ const AccountArea = ({ t, history: { location } }) => (
 
 AccountArea.propTypes = {
   t: PropTypes.func.isRequired,
+  environment: PropTypes.oneOf(['live', 'test']).isRequired,
   history: PropTypes.shape({
     location: PropTypes.shape({
       pathname: PropTypes.string,

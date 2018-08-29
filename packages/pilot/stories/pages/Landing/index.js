@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 
 import Account from '../../../src/containers/Account'
-import Login from '../../../src/containers/Account/Login'
+import LoginForm from '../../../src/containers/Account/LoginForm'
 import {
   PasswordRecoveryForm,
   PasswordRecoveryConfirmation,
@@ -51,12 +51,28 @@ const unregisteredPresentation = (
 )
 
 storiesOf('Pages', module)
-  .add('Login', () => (
+  .add('Login live', () => (
     <Account
+      base="light"
       // eslint-disable-next-line
       logo={Placeholder}
       primaryContent={
-        <Login
+        <LoginForm
+          onLogin={action('login')}
+          onPasswordRecovery={action('recover password')}
+
+        />
+      }
+      secondaryContent={registeredPresentation}
+    />
+  ))
+  .add('Login test', () => (
+    <Account
+      base="dark"
+      // eslint-disable-next-line
+      logo={Placeholder}
+      primaryContent={
+        <LoginForm
           onLogin={action('login')}
           onPasswordRecovery={action('recover password')}
         />
@@ -93,7 +109,6 @@ storiesOf('Pages', module)
   ))
   .add('Signup', () => (
     <Account
-      base="light"
       // eslint-disable-next-line
       logo={Placeholder}
       primaryContent={
@@ -107,7 +122,6 @@ storiesOf('Pages', module)
   ))
   .add('Signup Confirmation', () => (
     <Account
-      base="light"
       // eslint-disable-next-line
       logo={Placeholder}
       primaryContent={
@@ -121,7 +135,6 @@ storiesOf('Pages', module)
   ))
   .add('Signup E-mail Invalid', () => (
     <Account
-      base="light"
       // eslint-disable-next-line
       logo={Placeholder}
       primaryContent={

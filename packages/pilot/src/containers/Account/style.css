@@ -46,7 +46,7 @@
   padding: 0;
   font-size: 36px;
   font-weight: normal;
-  color: #454545;
+  color: inherit;
   margin: 0 0 13px;
   width: 100%;
   line-height: 1;
@@ -55,7 +55,7 @@
 
 .uppercase {
   text-transform: uppercase;
-  color: #757575;
+  color: inherit;
 }
 
 .uppercase > p > span {
