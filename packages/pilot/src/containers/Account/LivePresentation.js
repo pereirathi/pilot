@@ -2,12 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import { Spacing } from 'former-kit'
-
 import IconGithub from 'emblematic-icons/svg/Github20.svg'
 import IconTest from 'emblematic-icons/svg/TestAmbientOn24.svg'
-
-import { testUrl } from '../../environment'
 
 import styles from './style.css'
 
@@ -25,7 +21,7 @@ const LivePresentationContainer = ({
       </span>
     </div>
     <p className={styles.paragraph}>
-      {t('landing.live.about_dashboard')}
+      {t('landing.live.body')}
     </p>
     <div className={classNames(styles.uppercase, styles.signInBlock)}>
       <p>
@@ -42,22 +38,12 @@ const LivePresentationContainer = ({
         </span>
       </p>
     </div>
-    <div className={styles.changeEnvironment}>
+    <div>
       <div>
-        <a href={testUrl} className={classNames(styles.goToTest, styles.uppercase)}>
-          <IconTest height={60} width={60} />
-          <Spacing size="small" />
-          {t('landing.live.back_link')}
-          &nbsp;
-          <strong>
-            {t('landing.live.back_link_emphasis')}
-          </strong>
-        </a>
+        <IconTest height={60} width={60} />
       </div>
       <div>
-        <a href="https://github.com/pagarme/pilot" className={styles.githubLink}>
-          <IconGithub height={24} width={21} />
-        </a>
+        <IconGithub height={32} width={32} />
       </div>
     </div>
   </div>
