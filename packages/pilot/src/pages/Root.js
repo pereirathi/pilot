@@ -89,7 +89,6 @@ class Root extends Component {
         <Route
           path="/account"
           component={Account}
-          environment={environment}
         />)
     }
 

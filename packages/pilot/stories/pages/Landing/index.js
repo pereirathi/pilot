@@ -14,8 +14,8 @@ import {
   SignUpConfirmation,
   InvalidEmailError,
 } from '../../../src/containers/Account/SignUp'
-import Unregistered from '../../../src/containers/Account/UnregisteredPresentation'
-import Registered from '../../../src/containers/Account/RegisteredPresentation'
+import Live from '../../../src/containers/Account/LivePresentation'
+import Test from '../../../src/containers/Account/TestPresentation'
 
 const Placeholder = props => (
   <svg viewBox="0 0 26.458 26.458" {...props}>
@@ -32,19 +32,15 @@ const Placeholder = props => (
   </svg>
 )
 
-const availableLanguages = ['pt', 'en']
-
-const registeredPresentation = (
-  <Registered
-    availableLanguages={availableLanguages}
-    selectedLanguage={availableLanguages[0]}
+const LivePresentation = (
+  <Live
     onGotoSignup={action('signup')}
-    onLanguageChange={action('change language')}
+    onBackToLogin={action('back to login')}
   />
 )
 
-const unregisteredPresentation = (
-  <Unregistered
+const TestPresentation = (
+  <Test
     onGotoSignup={action('signup')}
     onBackToLogin={action('back to login')}
   />
@@ -63,7 +59,7 @@ storiesOf('Pages', module)
 
         />
       }
-      secondaryContent={registeredPresentation}
+      secondaryContent={LivePresentation}
     />
   ))
   .add('Login test', () => (
@@ -77,7 +73,7 @@ storiesOf('Pages', module)
           onPasswordRecovery={action('recover password')}
         />
       }
-      secondaryContent={registeredPresentation}
+      secondaryContent={TestPresentation}
     />
   ))
   .add('Password Recovery Form', () => (
@@ -91,7 +87,7 @@ storiesOf('Pages', module)
           onSubmit={action('submit')}
         />
       }
-      secondaryContent={registeredPresentation}
+      secondaryContent={LivePresentation}
     />
   ))
   .add('Password Recovery Confirmation', () => (
@@ -104,7 +100,7 @@ storiesOf('Pages', module)
           onPasswordRecovery={action('recover password')}
         />
       }
-      secondaryContent={registeredPresentation}
+      secondaryContent={LivePresentation}
     />
   ))
   .add('Signup', () => (
@@ -117,7 +113,7 @@ storiesOf('Pages', module)
           onSubmit={action('submit')}
         />
       }
-      secondaryContent={unregisteredPresentation}
+      secondaryContent={LivePresentation}
     />
   ))
   .add('Signup Confirmation', () => (
@@ -130,7 +126,7 @@ storiesOf('Pages', module)
           onBackToLogin={action('back to login')}
         />
       }
-      secondaryContent={unregisteredPresentation}
+      secondaryContent={LivePresentation}
     />
   ))
   .add('Signup E-mail Invalid', () => (
@@ -143,6 +139,6 @@ storiesOf('Pages', module)
           onBackToSignUp={action('back to signup')}
         />
       }
-      secondaryContent={unregisteredPresentation}
+      secondaryContent={LivePresentation}
     />
   ))

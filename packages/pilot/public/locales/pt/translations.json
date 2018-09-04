@@ -77,23 +77,28 @@
   },
   "landing": {
     "logo": "FormerKit",
-    "title": "Bem-vindo ao Pagar.me",
-    "subtitle": "A melhor forma de receber dinheiro online",
-    "body": "Esta é a Dashboard do Pagar.me, o painel de controle da sua operação. Através dela você terá acesso a suas vendas, saldo, extrato, além de poder realizar saques, estornos e outras tarefas cotidianas de sua operação.",
-    "login_call": "use o formulário para entrar em sua conta.",
-    "signup_call": "ainda não tem uma conta?",
-    "signup_action": "registre-se!"
+    "title": "Seja bem-vindo",
+    "live": {
+      "body": "A Dashboard Pagar.me é o painel de controle da sua operação. Através dela você tem acesso a diversos dados relevantes para seu dia a dia de trabalho, e também pode realizar diferentes ações cotidianas com facilidade, como estornos, consulta de saldo e mais.",
+      "subtitle": "À dashboard pagar.me"
+    },
+    "login_call": "Faça login ao lado para acessar sua conta",
+    "signup_call": "Ainda não tem uma conta?",
+    "signup_action": "Cadastre-se!",
+    "test": {
+      "body": "Aqui você pode criar dados fictícios, alterar configurações e usar novas funcionalidades para testar e verificar a sua operação. Nada do que é feito aqui altera seu saldo.",
+      "subtitle": "À dashboard de teste pagar.me"
+    }
   },
   "login": {
     "token": "Token",
     "login_action": "Acessar",
-    "password_recovery_action": "Esqueci minha senha",
+    "password_recovery_action": "Redefinir senha",
     "network_error": "Falha de comunicação com o Pagar.me. Verifique seu acesso a internet."
   },
   "validations": {
     "isEmail": "Não é um e-mail válido"
   },
-
   "password_recovery": {
     "confirmation": "em instantes você receberá um e-mail com as instruções para a redefinição de sua senha",
     "confirmation_emphasis": "pronto",

@@ -2,9 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
+import IconGithub from 'emblematic-icons/svg/Github20.svg'
+import IconTest from 'emblematic-icons/svg/TestAmbientOn24.svg'
+
 import styles from './style.css'
 
-const RegisteredPresentationContainer = ({
+const LivePresentationContainer = ({
   onGotoSignup,
   t,
 }) => (
@@ -14,11 +17,11 @@ const RegisteredPresentationContainer = ({
         {t('landing.title')}
       </h1>
       <span className={styles.uppercase}>
-        {t('landing.subtitle')}
+        {t('landing.live.subtitle')}
       </span>
     </div>
     <p className={styles.paragraph}>
-      {t('landing.body')}
+      {t('landing.live.body')}
     </p>
     <div className={classNames(styles.uppercase, styles.signInBlock)}>
       <p>
@@ -35,16 +38,24 @@ const RegisteredPresentationContainer = ({
         </span>
       </p>
     </div>
+    <div>
+      <div>
+        <IconTest height={60} width={60} />
+      </div>
+      <div>
+        <IconGithub height={32} width={32} />
+      </div>
+    </div>
   </div>
 )
 
-RegisteredPresentationContainer.propTypes = {
+LivePresentationContainer.propTypes = {
   onGotoSignup: PropTypes.func.isRequired,
   t: PropTypes.func,
 }
 
-RegisteredPresentationContainer.defaultProps = {
+LivePresentationContainer.defaultProps = {
   t: t => t,
 }
 
-export default RegisteredPresentationContainer
+export default LivePresentationContainer

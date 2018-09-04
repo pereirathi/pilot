@@ -3,35 +3,39 @@ import PropTypes from 'prop-types'
 
 import { withRouter } from 'react-router-dom'
 import { translate } from 'react-i18next'
-
 import { compose } from 'ramda'
 
-import UnregisteredPresentation from '../../containers/Account/UnregisteredPresentation'
+import TestPresentation from '../../containers/Account/TestPresentation'
 
 const enhanced = compose(
   translate(),
   withRouter
 )
 
-class UnregisteredPresentationPage extends PureComponent {
+class TestPresentationPage extends PureComponent {
+  constructor (props) {
+    super(props)
+    this.handleSignup = this.handleSignup.bind(this)
+  }
+
   // eslint-disable-next-line class-methods-use-this
-  handleLogin (e) {
+  handleSignup (e) {
     e.preventDefault()
     window.location = 'https://dashboard.pagar.me/#/signup'
   }
 
   render () {
     return (
-      <UnregisteredPresentation
-        onBackToLogin={this.handleLogin}
+      <TestPresentation
+        onGotoSignup={this.handleSignup}
         t={this.props.t}
       />
     )
   }
 }
 
-UnregisteredPresentationPage.propTypes = {
+TestPresentationPage.propTypes = {
   t: PropTypes.func.isRequired,
 }
 
-export default enhanced(UnregisteredPresentationPage)
+export default enhanced(TestPresentationPage)

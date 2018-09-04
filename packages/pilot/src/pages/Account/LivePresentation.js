@@ -1,16 +1,18 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+
 import { withRouter } from 'react-router-dom'
 import { translate } from 'react-i18next'
 import { compose } from 'ramda'
-import RegisteredPresentation from '../../containers/Account/RegisteredPresentation'
+
+import LivePresentation from '../../containers/Account/LivePresentation'
 
 const enhanced = compose(
   translate(),
   withRouter
 )
 
-class RegisteredPresentationPage extends PureComponent {
+class LivePresentationPage extends PureComponent {
   constructor (props) {
     super(props)
     this.handleSignup = this.handleSignup.bind(this)
@@ -24,7 +26,7 @@ class RegisteredPresentationPage extends PureComponent {
 
   render () {
     return (
-      <RegisteredPresentation
+      <LivePresentation
         onGotoSignup={this.handleSignup}
         t={this.props.t}
       />
@@ -32,8 +34,8 @@ class RegisteredPresentationPage extends PureComponent {
   }
 }
 
-RegisteredPresentationPage.propTypes = {
+LivePresentationPage.propTypes = {
   t: PropTypes.func.isRequired,
 }
 
-export default enhanced(RegisteredPresentationPage)
+export default enhanced(LivePresentationPage)

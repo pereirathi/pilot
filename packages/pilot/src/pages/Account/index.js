@@ -15,21 +15,23 @@ import {
 import { translate } from 'react-i18next'
 
 import Account from '../../containers/Account'
-import UnregisteredPresentation from './UnregisteredPresentation'
 import InvalidEmailError from './SignUp/InvalidEmailError'
 import Login from './Login'
+import LivePresentation from './LivePresentation'
 import PasswordRecovery from './PasswordRecovery'
 import PasswordRecoveryConfirmation from './PasswordRecovery/Confirmation'
 import SignUp from './SignUp'
 import SignUpConfirmation from './SignUp/Confirmation'
-import RegisteredPresentation from './RegisteredPresentation'
+import TestPresentation from './TestPresentation'
+
+import environment from '../../environment'
 
 import Logo from '../logo.svg'
 
 const DARK_BASE = 'dark'
 const LIGHT_BASE = 'light'
 
-const getBaseByPath = (pathname, environment) => {
+const getBaseByPath = (pathname) => {
   if (contains('account/login', pathname) && environment === 'live') {
     return LIGHT_BASE
   }
@@ -41,11 +43,11 @@ const enhance = compose(
   translate()
 )
 
-const AccountArea = ({ t, environment, history: { location } }) => (
+const AccountArea = ({ t, history: { location } }) => (
   <Account
     t={t}
     logo={Logo}
-    base={getBaseByPath(location.pathname, environment)}
+    base={getBaseByPath(location.pathname)}
     primaryContent={
       <Switch>
         <Route
@@ -78,15 +80,21 @@ const AccountArea = ({ t, environment, history: { location } }) => (
       <Switch>
         <Route
           path="/account/login"
-          component={RegisteredPresentation}
+          component={LivePresentation}
+          environment="live"
+        />
+        <Route
+          path="/account/login"
+          component={TestPresentation}
+          environment="test"
         />
         <Route
           path="/account/password"
-          component={RegisteredPresentation}
+          component={LivePresentation}
         />
         <Route
           path="/account/signup"
-          component={UnregisteredPresentation}
+          component={LivePresentation}
         />
         <Redirect to="/account/login" />
       </Switch>
@@ -96,7 +104,6 @@ const AccountArea = ({ t, environment, history: { location } }) => (
 
 AccountArea.propTypes = {
   t: PropTypes.func.isRequired,
-  environment: PropTypes.oneOf(['live', 'test']).isRequired,
   history: PropTypes.shape({
     location: PropTypes.shape({
       pathname: PropTypes.string,
