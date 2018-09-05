@@ -18,10 +18,6 @@ const LoginContainer = ({
   t,
 }) => (
   <Form
-    data={{
-      email: '',
-      password: '',
-    }}
     errors={errors}
     customErrorProp="error"
     onSubmit={onLogin}
@@ -41,19 +37,17 @@ const LoginContainer = ({
       />
     </div>
     {errors &&
-      <div className={styles.errorAlert}>
-        <Alert
-          type="error"
-          icon={<IconWarning height={16} width={16} />}
-        >
-          <span>
-            {errors.null
-              ? errors.null
-              : t('login.network_error')
-            }
-          </span>
-        </Alert>
-      </div>
+      <Alert
+        type="error"
+        icon={<IconWarning height={16} width={16} />}
+      >
+        <span>
+          {errors.null
+            ? errors.null
+            : t('login.network_error')
+          }
+        </span>
+      </Alert>
     }
 
     <div className={styles.actions}>

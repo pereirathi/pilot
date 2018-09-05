@@ -38,6 +38,13 @@ const getBaseByPath = (pathname) => {
   return DARK_BASE
 }
 
+const getEnvironment = () => {
+  if (environment === 'live') {
+    return LivePresentation
+  }
+  return TestPresentation
+}
+
 const enhance = compose(
   withRouter,
   translate()
@@ -80,13 +87,7 @@ const AccountArea = ({ t, history: { location } }) => (
       <Switch>
         <Route
           path="/account/login"
-          component={LivePresentation}
-          environment="live"
-        />
-        <Route
-          path="/account/login"
-          component={TestPresentation}
-          environment="test"
+          component={getEnvironment()}
         />
         <Route
           path="/account/password"

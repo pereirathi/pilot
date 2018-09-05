@@ -24,12 +24,10 @@
 
 .secondaryContent {
   flex: 1;
-  color: #a0a0a0;
   justify-content: flex-start;
 }
 
 .primaryContent {
-  color: #ffffff;
   justify-content: space-around;
   flex: 1;
 }
@@ -53,9 +51,14 @@
   text-transform: uppercase;
 }
 
+.light .title {
+  color: #454545;
+}
+
 .uppercase {
-  text-transform: uppercase;
   color: inherit;
+  font-size: 14px;
+  text-transform: uppercase;
 }
 
 .uppercase > p > span {
@@ -64,16 +67,12 @@
 }
 
 .paragraph {
+  font-size: 14px;
   line-height: 1.7;
 }
 
 .login .paragraph {
   text-transform: uppercase;
-}
-
-.logo {
-  width: 100%;
-  height: 95px;
 }
 
 .login,
@@ -127,7 +126,7 @@
   }
 }
 
-.primaryContent .login {
+.dark .primaryContent .login {
 
   & input:focus ~ label,
   & input:hover,
@@ -174,12 +173,35 @@
   padding-bottom: 33px;
 }
 
-.errorAlert {
+.changeEnvironment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
 
-  & > * {
-    width: 100%;
-    box-sizing: border-box;
+  & button,
+  & a {
+    text-decoration: none;
   }
 }
 
+.goToTest {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & strong {
+    color: #37cc9a;
+  }
+}
+
+.githubLink {
+  align-items: flex-end;
+  background: #757575;
+  border-radius: 100%;
+  color: #ffffff;
+  display: flex;
+  height: 32px;
+  justify-content: center;
+  width: 32px;
+}

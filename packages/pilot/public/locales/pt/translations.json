@@ -79,6 +79,8 @@
     "logo": "FormerKit",
     "title": "Seja bem-vindo",
     "live": {
+      "back_link": "Ir para área de",
+      "back_link_emphasis": "teste",
       "body": "A Dashboard Pagar.me é o painel de controle da sua operação. Através dela você tem acesso a diversos dados relevantes para seu dia a dia de trabalho, e também pode realizar diferentes ações cotidianas com facilidade, como estornos, consulta de saldo e mais.",
       "subtitle": "À dashboard pagar.me"
     },
@@ -86,13 +88,17 @@
     "signup_call": "Ainda não tem uma conta?",
     "signup_action": "Cadastre-se!",
     "test": {
-      "body": "Aqui você pode criar dados fictícios, alterar configurações e usar novas funcionalidades para testar e verificar a sua operação. Nada do que é feito aqui altera seu saldo.",
-      "subtitle": "À dashboard de teste pagar.me"
+      "back_button": "Voltar para o login Live",
+      "body": "Aqui você pode criar dados fictícios, alterar configurações e usar novas funcionalidades para testar e verificar a sua operação.",
+      "body2": "Nada do que é feito aqui altera seu saldo.",
+      "subtitle": "À dashboard de",
+      "subtitle2": "pagar.me",
+      "subtitle_emphasis": "teste"
     }
   },
   "login": {
     "token": "Token",
-    "login_action": "Acessar",
+    "login_action": "Entrar",
     "password_recovery_action": "Redefinir senha",
     "network_error": "Falha de comunicação com o Pagar.me. Verifique seu acesso a internet."
   },
