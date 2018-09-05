@@ -2,8 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
+import { Spacing } from 'former-kit'
+
 import IconGithub from 'emblematic-icons/svg/Github20.svg'
 import IconTest from 'emblematic-icons/svg/TestAmbientOn24.svg'
+
+import { testUrl } from '../../environment'
 
 import styles from './style.css'
 
@@ -38,12 +42,22 @@ const LivePresentationContainer = ({
         </span>
       </p>
     </div>
-    <div>
+    <div className={styles.changeEnvironment}>
       <div>
-        <IconTest height={60} width={60} />
+        <a href={testUrl} className={classNames(styles.goToTest, styles.uppercase)}>
+          <IconTest height={60} width={60} />
+          <Spacing size="small" />
+          {t('landing.live.back_link')}
+          &nbsp;
+          <strong>
+            {t('landing.live.back_link_emphasis')}
+          </strong>
+        </a>
       </div>
       <div>
-        <IconGithub height={32} width={32} />
+        <a href="https://github.com/pagarme/pilot" className={styles.githubLink}>
+          <IconGithub height={24} width={21} />
+        </a>
       </div>
     </div>
   </div>

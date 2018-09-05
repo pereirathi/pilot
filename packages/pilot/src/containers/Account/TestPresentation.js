@@ -7,6 +7,8 @@ import { Button } from 'former-kit'
 import IconBack from 'emblematic-icons/svg/ChevronBack32.svg'
 import IconGithub from 'emblematic-icons/svg/Github20.svg'
 
+import { liveUrl } from '../../environment'
+
 import styles from './style.css'
 
 const TestPresentationContainer = ({
@@ -20,10 +22,16 @@ const TestPresentationContainer = ({
       </h1>
       <span className={styles.uppercase}>
         {t('landing.test.subtitle')}
+        &nbsp;
+        <strong>{t('landing.test.subtitle_emphasis')}</strong>
+        &nbsp;
+        {t('landing.test.subtitle2')}
       </span>
     </div>
     <p className={styles.paragraph}>
       {t('landing.test.body')}
+      <br /><br />
+      {t('landing.test.body2')}
     </p>
     <div className={classNames(styles.uppercase, styles.signInBlock)}>
       <p>
@@ -40,17 +48,21 @@ const TestPresentationContainer = ({
         </span>
       </p>
     </div>
-    <div>
+    <div className={styles.changeEnvironment}>
       <div>
-        <Button
-          fill="outline"
-          icon={<IconBack width={16} height={16} />}
-        >
-          VOLTAR PARA O LOGIN LIVE
-        </Button>
+        <a href={liveUrl}>
+          <Button
+            fill="outline"
+            icon={<IconBack width={16} height={16} />}
+          >
+            {t('landing.test.back_button')}
+          </Button>
+        </a>
       </div>
       <div>
-        <IconGithub height={32} width={32} />
+        <a href="https://github.com/pagarme/pilot" className={styles.githubLink}>
+          <IconGithub height={24} width={21} />
+        </a>
       </div>
     </div>
   </div>
