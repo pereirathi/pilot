@@ -25,7 +25,7 @@ const LivePresentationContainer = ({
       </span>
     </div>
     <p className={styles.paragraph}>
-      {t('landing.live.body')}
+      {t('landing.live.about_dashboard')}
     </p>
     <div className={classNames(styles.uppercase, styles.signInBlock)}>
       <p>
