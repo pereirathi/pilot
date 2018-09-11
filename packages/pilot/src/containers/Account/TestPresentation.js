@@ -25,23 +25,26 @@ const TestPresentationContainer = ({
         &nbsp;
         <strong>{t('landing.test.subtitle_emphasis')}</strong>
         &nbsp;
-        {t('landing.test.subtitle2')}
+        {t('landing.test.subtitle_company')}
       </span>
     </div>
-    <p className={styles.paragraph}>
-      {t('landing.test.body')}
-      <br /><br />
-      {t('landing.test.body2')}
-    </p>
+    <div>
+      <p className={styles.paragraph}>
+        {t('landing.test.about_dashboard')}
+      </p>
+      <p className={styles.paragraph}>
+        {t('landing.test.about_dashboard2')}
+      </p>
+    </div>
     <div className={classNames(styles.uppercase, styles.signInBlock)}>
       <p>
         <span>{t('landing.login_call')}</span>
         <span>
           {t('landing.signup_call')}
           <button
-            role="link"
-            onClick={onGotoSignup}
             className={styles.signInLink}
+            onClick={onGotoSignup}
+            role="link"
           >
             {t('landing.signup_action')}
           </button>

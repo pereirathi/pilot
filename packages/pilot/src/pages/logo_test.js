@@ -11,7 +11,7 @@ const LogoTest = () => (
     </div>
     <div>
       <Logo width={160} height={47} />
-      <span>Area de <strong>teste</strong></span>
+      <span>Área de <strong>teste</strong></span>
     </div>
   </div>
 )
