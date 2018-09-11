@@ -50,7 +50,6 @@ storiesOf('Pages', module)
   .add('Login live', () => (
     <Account
       base="light"
-      // eslint-disable-next-line
       logo={Placeholder}
       primaryContent={
         <LoginForm
@@ -65,7 +64,6 @@ storiesOf('Pages', module)
   .add('Login test', () => (
     <Account
       base="dark"
-      // eslint-disable-next-line
       logo={Placeholder}
       primaryContent={
         <LoginForm
