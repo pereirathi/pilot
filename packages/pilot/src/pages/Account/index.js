@@ -17,16 +17,15 @@ import { translate } from 'react-i18next'
 import Account from '../../containers/Account'
 import InvalidEmailError from './SignUp/InvalidEmailError'
 import Login from './Login'
-import LivePresentation from './LivePresentation'
+import Logo from '../../components/Logo/logo.svg'
 import PasswordRecovery from './PasswordRecovery'
 import PasswordRecoveryConfirmation from './PasswordRecovery/Confirmation'
+import Presentation from './Presentation'
 import SignUp from './SignUp'
 import SignUpConfirmation from './SignUp/Confirmation'
-import TestPresentation from './TestPresentation'
+import TestLogo from '../../components/Logo/TestLogo'
 
 import environment from '../../environment'
-
-import Logo from '../logo.svg'
 
 const DARK_BASE = 'dark'
 const LIGHT_BASE = 'light'
@@ -38,70 +37,64 @@ const getBaseByPath = (pathname) => {
   return DARK_BASE
 }
 
-const getEnvironment = () => {
-  if (environment === 'live') {
-    return LivePresentation
-  }
-  return TestPresentation
-}
+const getEnvironmentLogo = () => (
+  environment === 'live'
+    ? Logo
+    : TestLogo
+)
 
 const enhance = compose(
   withRouter,
   translate()
 )
 
-const AccountArea = ({ t, history: { location } }) => (
-  <Account
-    t={t}
-    logo={Logo}
-    base={getBaseByPath(location.pathname)}
-    primaryContent={
-      <Switch>
-        <Route
-          path="/account/login"
-          component={Login}
-        />
-        <Route
-          path="/account/password/recovery/confirmation"
-          component={PasswordRecoveryConfirmation}
-        />
-        <Route
-          path="/account/password/recovery"
-          component={PasswordRecovery}
-        />
-        <Route
-          path="/account/signup/confirmation"
-          component={SignUpConfirmation}
-        />
-        <Route
-          path="/account/signup/error"
-          component={InvalidEmailError}
-        />
-        <Route
-          path="/account/signup"
-          component={SignUp}
-        />
-      </Switch>
-    }
-    secondaryContent={
-      <Switch>
-        <Route
-          path="/account/login"
-          component={getEnvironment()}
-        />
-        <Route
-          path="/account/password"
-          component={LivePresentation}
-        />
-        <Route
-          path="/account/signup"
-          component={LivePresentation}
-        />
-        <Redirect to="/account/login" />
-      </Switch>
-    }
-  />
-)
+const AccountArea = ({ t, history: { location } }) => {
+  const base = getBaseByPath(location.pathname)
+  return (
+    <Account
+      t={t}
+      logo={getEnvironmentLogo()}
+      base={base}
+      primaryContent={
+        <Switch>
+          <Route
+            path="/account/login"
+            render={() => <Login base={base} />}
+          />
+          <Route
+            path="/account/password/recovery/confirmation"
+            component={PasswordRecoveryConfirmation}
+          />
+          <Route
+            path="/account/password/recovery"
+            component={PasswordRecovery}
+          />
+          <Route
+            path="/account/signup/confirmation"
+            component={SignUpConfirmation}
+          />
+          <Route
+            path="/account/signup/error"
+            component={InvalidEmailError}
+          />
+          <Route
+            path="/account/signup"
+            component={SignUp}
+          />
+        </Switch>
+      }
+      secondaryContent={
+        <Switch>
+          <Route
+            path="/account"
+            component={Presentation}
+          />
+          <Redirect to="/account/login" />
+        </Switch>
+      }
+    />
+  )
+}
 
 AccountArea.propTypes = {
   t: PropTypes.func.isRequired,
