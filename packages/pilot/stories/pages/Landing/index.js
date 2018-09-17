@@ -14,8 +14,9 @@ import {
   SignUpConfirmation,
   InvalidEmailError,
 } from '../../../src/containers/Account/SignUp'
-import Live from '../../../src/containers/Account/LivePresentation'
-import Test from '../../../src/containers/Account/TestPresentation'
+import Presentation from '../../../src/containers/Account/Presentation'
+
+const t = translation => translation
 
 const Placeholder = props => (
   <svg viewBox="0 0 26.458 26.458" {...props}>
@@ -32,22 +33,16 @@ const Placeholder = props => (
   </svg>
 )
 
-const LivePresentation = (
-  <Live
+const PresentationFunc = (
+  <Presentation
     onGotoSignup={action('signup')}
     onBackToLogin={action('back to login')}
-  />
-)
-
-const TestPresentation = (
-  <Test
-    onGotoSignup={action('signup')}
-    onBackToLogin={action('back to login')}
+    t={t}
   />
 )
 
 storiesOf('Pages', module)
-  .add('Login live', () => (
+  .add('Login Live', () => (
     <Account
       base="light"
       logo={Placeholder}
@@ -55,13 +50,14 @@ storiesOf('Pages', module)
         <LoginForm
           onLogin={action('login')}
           onPasswordRecovery={action('recover password')}
-
+          t={t}
         />
       }
-      secondaryContent={LivePresentation}
+      secondaryContent={PresentationFunc}
+      t={t}
     />
   ))
-  .add('Login test', () => (
+  .add('Login Test', () => (
     <Account
       base="dark"
       logo={Placeholder}
@@ -69,9 +65,11 @@ storiesOf('Pages', module)
         <LoginForm
           onLogin={action('login')}
           onPasswordRecovery={action('recover password')}
+          t={t}
         />
       }
-      secondaryContent={TestPresentation}
+      secondaryContent={PresentationFunc}
+      t={t}
     />
   ))
   .add('Password Recovery Form', () => (
@@ -83,9 +81,11 @@ storiesOf('Pages', module)
           onPasswordRecovery={action('recover password')}
           onBackToLogin={action('back to login')}
           onSubmit={action('submit')}
+          t={t}
         />
       }
-      secondaryContent={LivePresentation}
+      secondaryContent={PresentationFunc}
+      t={t}
     />
   ))
   .add('Password Recovery Confirmation', () => (
@@ -96,9 +96,11 @@ storiesOf('Pages', module)
         <PasswordRecoveryConfirmation
           onBackToLogin={action('back to login')}
           onPasswordRecovery={action('recover password')}
+          t={t}
         />
       }
-      secondaryContent={LivePresentation}
+      secondaryContent={PresentationFunc}
+      t={t}
     />
   ))
   .add('Signup', () => (
@@ -109,9 +111,11 @@ storiesOf('Pages', module)
         <SignUpForm
           onPasswordRecovery={action('recover password')}
           onSubmit={action('submit')}
+          t={t}
         />
       }
-      secondaryContent={LivePresentation}
+      secondaryContent={PresentationFunc}
+      t={t}
     />
   ))
   .add('Signup Confirmation', () => (
@@ -122,9 +126,11 @@ storiesOf('Pages', module)
         <SignUpConfirmation
           onPasswordRecovery={action('recover password')}
           onBackToLogin={action('back to login')}
+          t={t}
         />
       }
-      secondaryContent={LivePresentation}
+      secondaryContent={PresentationFunc}
+      t={t}
     />
   ))
   .add('Signup E-mail Invalid', () => (
@@ -135,8 +141,10 @@ storiesOf('Pages', module)
         <InvalidEmailError
           onPasswordRecovery={action('recover password')}
           onBackToSignUp={action('back to signup')}
+          t={t}
         />
       }
-      secondaryContent={LivePresentation}
+      secondaryContent={PresentationFunc}
+      t={t}
     />
   ))

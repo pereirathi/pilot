@@ -12,14 +12,11 @@ import styles from './style.css'
 const DARK_BASE = 'dark'
 const LIGHT_BASE = 'light'
 
-const getSecondaryBase = (
-  base
-) => {
-  if (base === DARK_BASE) {
-    return LIGHT_BASE
-  }
-  return DARK_BASE
-}
+const getSecondaryBase = base => (
+  base === DARK_BASE
+    ? LIGHT_BASE
+    : DARK_BASE
+)
 
 const Account = ({
   t,
@@ -31,10 +28,12 @@ const Account = ({
   <Landing className={styles.container}>
     <LandingPrimarySection base={base}>
       <div className={styles.columnContainer}>
-        <div className={styles.logo}>
-          <Logo alt={t('landing.logo')} />
+        <div className={styles.primaryContent}>
+          <div className={styles.logo}>
+            <Logo alt={t('landing.logo')} />
+          </div>
+          {primaryContent}
         </div>
-        {primaryContent}
       </div>
     </LandingPrimarySection>
     <LandingSecondarySection base={getSecondaryBase(base)}>
@@ -50,12 +49,11 @@ Account.propTypes = {
   logo: PropTypes.func.isRequired,
   primaryContent: PropTypes.node.isRequired,
   secondaryContent: PropTypes.node.isRequired,
-  t: PropTypes.func,
+  t: PropTypes.func.isRequired,
 }
 
 Account.defaultProps = {
   base: DARK_BASE,
-  t: t => t,
 }
 
 export default Account
