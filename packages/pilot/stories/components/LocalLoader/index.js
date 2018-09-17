@@ -7,6 +7,7 @@ import {
   Row,
 } from 'former-kit'
 import Loader from '../../../src/components/LocalLoader'
+import Overlay from '../../../src/components/LocalLoader/overlay'
 import Section from '../../Section'
 import style from './style.css'
 
@@ -45,15 +46,21 @@ class LoaderState extends PureComponent {
             </Col>
 
             <Col palm={12} tablet={6} desk={4} tv={4}>
-              <Card className={style.cardExample}>
-                <h1> Example </h1>
-                <h4> 300px X 200px </h4>
-                <Loader
-                  label="Loading"
-                  text="Loading"
-                  visible={this.state.showingLoader}
-                />
-              </Card>
+              <Loader
+                overlay={
+                  <Overlay
+                    label="Loading"
+                    text="Loading"
+                    key="overlay"
+                  />
+                }
+                visible={this.state.showingLoader}
+              >
+                <Card className={style.cardExample}>
+                  <h1> Example </h1>
+                  <h4> 300px X 200px </h4>
+                </Card>
+              </Loader>
             </Col>
           </Row>
         </Grid>

@@ -1,71 +1,58 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import style from './style.css'
 import Transition from '../Transition'
 
 const Loader = ({
-  label,
-  text,
+  children,
+  overlay,
   visible,
 }) => (
-  <Transition
-    atActive={{
-      width: 100,
-      opacity: 1,
-    }}
-    atEnter={{
-      width: 0,
-      zIndex: 10,
-      opacity: 0,
-    }}
-    atLeave={{
-      width: 15,
-      opacity: 0,
-    }}
-    className={style.transition}
-    mapStyles={item => ({
-      ...item,
-      width: `${item.width.toFixed(2)}%`,
-    })}
-    springOptions={{
-      damping: 26,
-      precision: 0.01,
-      stiffness: 170,
-    }}
-  >
-    {visible &&
-      <div
-        className={
-          classNames(
-            style.overlay,
-            style.loaderOverlay,
-            style.highZIndex
-          )}
-        key="overlay"
-      >
+  <div className={style.contentAnchor}>
+    <Transition
+      atActive={{
+        width: 100,
+        opacity: 1,
+      }}
+      atEnter={{
+        width: 0,
+        zIndex: 10,
+        opacity: 0,
+      }}
+      atLeave={{
+        width: 15,
+        opacity: 0,
+      }}
+      mapStyles={item => ({
+        ...item,
+        width: `${item.width.toFixed(2)}%`,
+      })}
+      springOptions={{
+        damping: 26,
+        precision: 0.01,
+        stiffness: 170,
+      }}
+    >
+      {visible &&
         <div
-          aria-live="polite"
-          aria-busy="true"
-          aria-label={label}
-          className={style.loader}
-          role="progressbar"
-        />
-        <span className={style.text}>{text}</span>
-      </div>
-    }
-  </Transition>
+          key="overlay"
+          className={style.transition}
+        >
+          {overlay}
+        </div>
+      }
+    </Transition>
+    {children}
+  </div>
 )
 
 Loader.propTypes = {
-  label: PropTypes.string,
-  text: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  overlay: PropTypes.element.isRequired,
   visible: PropTypes.bool,
 }
 
 Loader.defaultProps = {
-  label: 'Loading',
-  text: '',
   visible: false,
 }
 
