@@ -1,5 +1,9 @@
 
-import React, { cloneElement, Component } from 'react'
+import React, {
+  cloneElement,
+  Component,
+  Fragment,
+} from 'react'
 import { TransitionMotion, spring, presets } from 'react-motion'
 import PropTypes from 'prop-types'
 import {
@@ -59,7 +63,7 @@ class Transition extends Component {
 
   getStyles () {
     const { children } = this.props
-    if (!this.props.children) {
+    if (!children) {
       return []
     }
 
@@ -105,17 +109,19 @@ class Transition extends Component {
       key: config.key,
       style: this.props.mapStyles(config.style),
     }
+
     if (is(Array, config.data)) {
       return map(element => cloneElement(element, props), config.data)
     }
+
     return cloneElement(config.data, props)
   }
 
   renderChildren (interpolatedStyles) {
     return (
-      <div className={this.props.className}>
+      <Fragment>
         {interpolatedStyles.map(this.renderChild)}
-      </div>
+      </Fragment>
     )
   }
 
@@ -141,7 +147,6 @@ Transition.propTypes = {
   atLeave: PropTypes.object.isRequired,
   /* eslint-enable react/forbid-prop-types */
   children: PropTypes.node.isRequired,
-  className: PropTypes.string,
   didLeave: PropTypes.func,
   mapStyles: PropTypes.func,
   runOnMount: PropTypes.bool,
@@ -153,7 +158,6 @@ Transition.propTypes = {
 }
 
 Transition.defaultProps = {
-  className: '',
   didLeave: identity,
   mapStyles: identity,
   runOnMount: false,
