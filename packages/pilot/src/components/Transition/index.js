@@ -4,31 +4,34 @@ import React, {
   Component,
   Fragment,
 } from 'react'
-import { TransitionMotion, spring, presets } from 'react-motion'
+import {
+  TransitionMotion,
+  spring,
+  presets,
+} from 'react-motion'
 import PropTypes from 'prop-types'
 import {
-  curry,
   identity,
   ifElse,
   is,
   map,
   mapObjIndexed,
-  uncurryN,
 } from 'ramda'
 
-const applySpring = curry((springPreset, val) =>
-  spring(val, springPreset || presets.noWobble))
+const applySpring = springPreset =>
+  val => spring(val, springPreset || presets.noWobble)
 
-const applySpringIfNumber = springOptions => ifElse(
+const applySpringIfIsNumber = springOptions => ifElse(
   is(Number),
   applySpring(springOptions),
   identity
 )
 
-const ensureSpring = uncurryN(
-  2,
-  springOptions => mapObjIndexed(applySpringIfNumber(springOptions))
-)
+const ensureSpring = (springOptions, styleOptions) =>
+  mapObjIndexed(
+    applySpringIfIsNumber(springOptions),
+    styleOptions
+  )
 
 class Transition extends Component {
   constructor () {
