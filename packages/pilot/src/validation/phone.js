@@ -1,5 +1,3 @@
-/* eslint-disable no-useless-escape */
-const isPhone = /(?:^\([0]?[1-9]{2}\)|^[0]?[1-9]{2}[\.-\s]?)\s[9]?[1-9]\d{3}[\.-\s]?[0-9]{4}[_]?$/
-/* eslint-enable no-useless-escape */
+const isPhone = /^\([1-9]{2}\)\s([9][0-9]{4}-[0-9]{4}|[2-9][0-9]{4}-[0-9]{3}_)$/
 
 export default message => value => !isPhone.test(value) && message
