@@ -22,6 +22,7 @@ import {
   BANK_ACCOUNT,
 } from './contentIds'
 
+
 class RecipientDetailConfig extends Component {
   constructor (props) {
     super(props)
@@ -38,6 +39,8 @@ class RecipientDetailConfig extends Component {
     this.onChangeTransferHandler = this.onChangeTransferHandler.bind(this)
     this.onChangeTransferToggle = this.onChangeTransferToggle.bind(this)
     this.renderAnticipationSub = this.renderAnticipationSub.bind(this)
+    this.onCancel = this.onCancel.bind(this)
+    this.onSave = this.onSave.bind(this)
   }
 
   onChangeAnticipationHandler (anticipation) {
@@ -67,6 +70,45 @@ class RecipientDetailConfig extends Component {
     })
   }
 
+  onCancel () {
+    this.props.onCancel(
+      this.setState({
+        expanded: {},
+      })
+    )
+  }
+
+  onSave (data) {
+    console.log('pum', data)
+    if (data.anticipationModel) {
+      this.props.onSave(
+        data,
+        ANTICIPATION,
+        this.setState({
+          expanded: {},
+        })
+      )
+    }
+    if (data.transferInterval) {
+      this.props.onSave(
+        data,
+        TRANSFER,
+        this.setState({
+          expanded: {},
+        })
+      )
+    }
+    if (data.id) {
+      this.props.onSave(
+        data,
+        BANK_ACCOUNT,
+        this.setState({
+          expanded: {},
+        })
+      )
+    }
+  }
+
   handleCollapse (id) {
     this.setState({
       expanded: {
@@ -83,7 +125,7 @@ class RecipientDetailConfig extends Component {
     const model = t('pages.add_recipient.anticipation_model')
     const volume = t('pages.add_recipient.anticipation_volume')
     const anticipationManual = t('pages.add_recipient.manual_volume')
-    const anticipationVolume = t('pages.add_recipient.anticipation_volume')
+    const anticipationVolume = t('pages.add_recipient.automatic_volume')
     const anticipation1025 = t('pages.add_recipient.automatic_1025')
     const anticipationDx = t('pages.add_recipient.automatic_dx')
 
@@ -142,7 +184,6 @@ class RecipientDetailConfig extends Component {
     const selectedAccount = accounts.find(account => (
       account.id === bankAccount.id
     ))
-
     return (
       `${selectedAccount.name} - ${selectedAccount.bank} - ${selectedAccount.agency} - ${selectedAccount.number}`
     )
@@ -151,8 +192,6 @@ class RecipientDetailConfig extends Component {
   render () {
     const {
       accounts,
-      onCancel,
-      onSave,
       t,
     } = this.props
     const {
@@ -173,8 +212,8 @@ class RecipientDetailConfig extends Component {
           <AnticipationContent
             data={anticipation}
             t={t}
-            onCancel={onCancel}
-            onSave={ainticipationData => onSave(ainticipationData, ANTICIPATION)}
+            onCancel={this.onCancel}
+            onSave={this.onSave}
             onChange={this.onChangeAnticipationHandler}
           />
         </RecipientItem>
@@ -189,8 +228,8 @@ class RecipientDetailConfig extends Component {
           <TransferContent
             data={transfer}
             t={t}
-            onCancel={onCancel}
-            onSave={transferData => onSave(transferData, TRANSFER)}
+            onCancel={this.onCancel}
+            onSave={this.onSave}
             onChange={this.onChangeTransferHandler}
             onToggle={this.onChangeTransferToggle}
           />
@@ -207,8 +246,8 @@ class RecipientDetailConfig extends Component {
             accounts={accounts}
             data={bankAccount}
             onChange={this.onChangeBankAccountHandler}
-            onCancel={onCancel}
-            onSave={bankAccountData => onSave(bankAccountData, BANK_ACCOUNT)}
+            onCancel={this.onCancel}
+            onSave={this.onSave}
             t={t}
           />
         </RecipientItem>
