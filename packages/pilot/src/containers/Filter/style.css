@@ -5,6 +5,26 @@
   overflow: initial;
 }
 
+.content {
+  flex: 1;
+
+  & > * {
+    margin-left: var(--spacing-small);
+  }
+
+  & > :first-child {
+    margin-left: unset;
+  }
+
+  &:last-child {
+    flex-wrap: nowrap;
+  }
+}
+
+.search {
+  min-width: 380px;
+}
+
 .selectedOptionsTitle {
   font-size: 14px;
   text-transform: uppercase;

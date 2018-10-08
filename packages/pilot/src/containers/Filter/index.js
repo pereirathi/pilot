@@ -11,6 +11,7 @@ import {
   Row,
   Col,
   CheckboxGroup,
+  Flexbox,
   Spacing,
 } from 'former-kit'
 
@@ -91,6 +92,7 @@ class Filters extends Component {
 
   renderChildrenInput (input, index) {
     return React.cloneElement(input, {
+      className: style.search,
       disabled: this.props.disabled,
       key: `${input.props.name}-${index}`,
     })
@@ -114,40 +116,42 @@ class Filters extends Component {
 
     return (
       <CardActions>
-        {ensureArray(children).map(this.renderChildrenInput)}
-        {!isNilOrEmpty(options) &&
+        <Flexbox className={style.content}>
+          {ensureArray(children).map(this.renderChildrenInput)}
+          {!isNilOrEmpty(options) &&
+            <Button
+              disabled={this.props.disabled}
+              relevance="low"
+              fill="outline"
+              iconAlignment="end"
+              icon={collapsed
+                ? <ChevronDown32 width={16} height={16} />
+                : <ChevronUp32 width={16} height={16} />
+              }
+              onClick={this.handleToogeMoreFilters}
+            >
+              {t('components.filter.more')}
+            </Button>
+          }
+          <Spacing size="flex" />
           <Button
-            disabled={this.props.disabled}
-            relevance="low"
+            relevance={filtersChanged ? 'normal' : 'low'}
+            onClick={onClear}
             fill="outline"
-            iconAlignment="end"
-            icon={collapsed
-              ? <ChevronDown32 width={16} height={16} />
-              : <ChevronUp32 width={16} height={16} />
-            }
-            onClick={this.handleToogeMoreFilters}
+            disabled={this.props.disabled}
           >
-            {t('components.filter.more')}
+            {t('components.filter.reset')}
           </Button>
-        }
-        <Spacing size="large" />
-        <Button
-          relevance={filtersChanged ? 'normal' : 'low'}
-          onClick={onClear}
-          fill="outline"
-          disabled={this.props.disabled}
-        >
-          {t('components.filter.reset')}
-        </Button>
 
-        <Button
-          relevance={filtersChanged ? 'normal' : 'low'}
-          disabled={!filtersChanged || this.props.disabled}
-          type="submit"
-          fill="gradient"
-        >
-          {t('components.filter.apply')}
-        </Button>
+          <Button
+            relevance={filtersChanged ? 'normal' : 'low'}
+            disabled={!filtersChanged || this.props.disabled}
+            type="submit"
+            fill="gradient"
+          >
+            {t('components.filter.apply')}
+          </Button>
+        </Flexbox>
       </CardActions>
     )
   }
