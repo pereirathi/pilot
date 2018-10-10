@@ -33,11 +33,16 @@ import SidebarSummary from './SidebarSummary'
 import Loader from './Loader'
 import Message from './Message'
 import MessageActions from './MessageActions'
+import Quantity from './QuantityInput'
 
 storiesOf('Components|Add Transaction', module)
   .addDecorator(checkA11y)
   .add('Customer form', () => <CustomerForm />)
   .add('Customer selection', () => <CustomerSelection />)
+
+storiesOf('Components|Quantity', module)
+  .addDecorator(checkA11y)
+  .add('Quantity', () => <Quantity />)
 
 storiesOf('Components|Custom components', module)
   .addDecorator(checkA11y)
