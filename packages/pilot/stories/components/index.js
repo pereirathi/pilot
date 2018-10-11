@@ -20,6 +20,7 @@ import RecipientSectionState from './RecipientSection'
 import RiskLevel from './RiskLevel'
 import ReprocessDetails from './ReprocessDetails'
 import Summary from './Summary'
+import ProductForm from './ProductForm'
 import TotalDisplay from './TotalDisplay'
 import TransferError from './TransferError'
 import TransactionDetailsCard from './TransactionDetailsCard'
@@ -35,10 +36,14 @@ import Message from './Message'
 import MessageActions from './MessageActions'
 import Quantity from './QuantityInput'
 
-storiesOf('Components|Add Transaction', module)
+storiesOf('Components|Add Transaction/Customers', module)
   .addDecorator(checkA11y)
   .add('Customer form', () => <CustomerForm />)
   .add('Customer selection', () => <CustomerSelection />)
+
+storiesOf('Components|Add Transaction/Products', module)
+  .addDecorator(checkA11y)
+  .add('Product form', () => <ProductForm />)
 
 storiesOf('Components|Quantity', module)
   .addDecorator(checkA11y)
