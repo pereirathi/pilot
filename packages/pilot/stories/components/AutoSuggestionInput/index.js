@@ -13,9 +13,9 @@ const data = [
   { name: 'Coke Light', value: 'coke-light' },
 ]
 
-const AutoSuggestion = () => (
+const SuggestionInputExample = () => (
   <Fragment>
-    <Section title="Auto Suggestion Input">
+    <Section title="Suggestion Input">
       <SuggestionInput
         data={data}
         onChange={action('change')}
@@ -25,4 +25,4 @@ const AutoSuggestion = () => (
   </Fragment>
 )
 
-export default AutoSuggestion
+export default SuggestionInputExample
