@@ -31,6 +31,7 @@ import {
 } from 'former-kit'
 import IconCalendar from 'emblematic-icons/svg/Calendar32.svg'
 import IconClose from 'emblematic-icons/svg/ClearClose32.svg'
+import IconDownLoad from 'emblematic-icons/svg/Download32.svg'
 import IconInfo from 'emblematic-icons/svg/Info32.svg'
 
 import BalanceSummary from '../../components/BalanceSummary'
@@ -41,6 +42,7 @@ import dateFormatter from '../../formatters/longDate'
 import dateLimits from '../../models/dateSelectorLimits'
 import datePresets from '../../models/dateSelectorPresets'
 import DetailsHead from '../../components/DetailsHead'
+import ExportData from '../../components/ExportData'
 import getColumns from '../../components/Operations/operationsTableColumns'
 import getColumnsTranslator from '../../formatters/columnTranslator'
 import Operations from '../../components/Operations'
@@ -74,6 +76,17 @@ const datesEqual = (left, right) => {
     && moment(right.end).diff(moment(right.end), 'days') === 0
   )
 }
+
+const getExportOptions = onExport => ([
+  {
+    title: 'CSV',
+    action: () => onExport('csv'),
+  },
+  {
+    title: 'Excel',
+    action: () => onExport('xls'),
+  },
+])
 
 const isEmptyDates = either(
   propSatisfies(isNil, 'end'),
@@ -331,6 +344,7 @@ class Balance extends Component {
       onCancelRequestClick,
       onCancelRequestClose,
       onConfirmCancelPendingRequest,
+      onExport,
       onWithdrawClick,
       search: {
         operations,
@@ -472,6 +486,15 @@ class Balance extends Component {
               tv={12}
             >
               <Card>
+                <ExportData
+                  exportOptions={getExportOptions(onExport)}
+                  icon={<IconDownLoad width={12} height={12} />}
+                  placement="bottomEnd"
+                  relevance="low"
+                  size="tiny"
+                  subtitle={t('pages.transactions.export_to')}
+                  title={t('pages.transactions.export_table')}
+                />
                 <Operations
                   columns={translateColumns(getColumns(typesLabels))}
                   currentPage={currentPage}
@@ -590,6 +613,7 @@ Balance.propTypes = {
   onCancelRequestClick: PropTypes.func,
   onCancelRequestClose: PropTypes.func,
   onConfirmCancelPendingRequest: PropTypes.func,
+  onExport: PropTypes.func,
   onFilterClick: PropTypes.func.isRequired,
   onPageChange: PropTypes.func.isRequired,
   onWithdrawClick: PropTypes.func.isRequired,
@@ -643,6 +667,7 @@ Balance.defaultProps = {
   modalConfirmOpened: false,
   onCancelRequestClick: null,
   onCancelRequestClose: null,
+  onExport: null,
   onConfirmCancelPendingRequest: null,
   total: {},
 }

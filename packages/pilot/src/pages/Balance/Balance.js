@@ -207,6 +207,7 @@ class Balance extends Component {
 
     this.handleAnticipation = this.handleAnticipation.bind(this)
     this.handleCancelRequest = this.handleCancelRequest.bind(this)
+    this.handleExportData = this.handleExportData.bind(this)
     this.handleDateChange = this.handleDateChange.bind(this)
     this.handleFilterClick = this.handleFilterClick.bind(this)
     this.handlePageChange = this.handlePageChange.bind(this)
@@ -376,6 +377,14 @@ class Balance extends Component {
       }))
   }
 
+  handleExportData (format) {
+    const { client, company } = this.props
+    const recipientId = getRecipientId(company)
+
+    return client.balanceOperations
+      .find({ recipientId, format })
+  }
+
   handleDateChange (dates) {
     const { query } = this.state
 
@@ -505,6 +514,7 @@ class Balance extends Component {
           onCancelRequestClick={userIsReadOnly(user) ? null : this.handleOpenConfirmCancel}
           onCancelRequestClose={this.handleCloseConfirmCancel}
           onConfirmCancelPendingRequest={this.handleCancelRequest}
+          onExport={this.handleExportData}
           onFilterClick={this.handleFilterClick}
           onPageChange={this.handlePageChange}
           onWithdrawClick={this.handleWithdraw}
