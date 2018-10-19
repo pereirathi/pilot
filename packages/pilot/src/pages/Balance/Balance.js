@@ -379,10 +379,11 @@ class Balance extends Component {
 
   handleExportData (format) {
     const { client, company } = this.props
+    const { query } = this.state
     const recipientId = getRecipientId(company)
-
+    console.log(query)
     return client.balanceOperations
-      .find({ recipientId, format })
+      .find({ recipientId, format, query })
   }
 
   handleDateChange (dates) {

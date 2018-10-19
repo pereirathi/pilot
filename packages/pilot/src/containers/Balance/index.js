@@ -84,7 +84,7 @@ const getExportOptions = onExport => ([
   },
   {
     title: 'Excel',
-    action: () => onExport('xls'),
+    action: () => onExport('xlsx'),
   },
 ])
 
