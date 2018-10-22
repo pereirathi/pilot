@@ -498,7 +498,10 @@ class Balance extends Component {
           </Row>
         </Grid>
 
-        <Modal isOpen={modalConfirmOpened}>
+        <Modal
+          closeTimeoutMS={200}
+          isOpen={modalConfirmOpened}
+        >
           <ModalTitle
             closeIcon={<IconClose width={16} height={16} />}
             onClose={onCancelRequestClose}
