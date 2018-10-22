@@ -418,6 +418,7 @@ class TransactionRefund extends Component {
     } = this.props
     return (
       <Modal
+        closeTimeoutMS={200}
         isOpen={isOpen}
         onRequestClose={onClose}
       >
