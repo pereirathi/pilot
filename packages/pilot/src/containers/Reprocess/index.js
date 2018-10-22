@@ -62,6 +62,7 @@ class Reprocess extends PureComponent {
 
     return (
       <Modal
+        closeTimeoutMS={200}
         isOpen={isOpen}
         loading={loading}
         onRequestClose={onCancel}
