@@ -24,6 +24,7 @@ const ManualReview = ({
   transactionId,
 }) => (
   <Modal
+    closeTimeoutMS={200}
     isOpen={isOpen}
     onRequestClose={onCancel}
   >
