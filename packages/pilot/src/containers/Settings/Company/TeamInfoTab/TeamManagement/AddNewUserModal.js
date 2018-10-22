@@ -88,6 +88,7 @@ class AddNewUserModal extends React.Component {
 
     return (
       <Modal
+        closeTimeoutMS={200}
         isOpen={isOpen}
         onRequestClose={handleCloseModal}
       >
